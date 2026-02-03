@@ -1,0 +1,53 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: ui-monospace, monospace; background: #1a1a1a; color: #eee; min-height: 100vh; display: flex; justify-content: center; padding: 2.5rem; }
+
+.calculator { width: 24rem; }
+
+.display { background: #2a2a2a; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; height: 6rem; display: flex; flex-direction: column; justify-content: center; }
+.formula { font-size: 0.9rem; color: #888; margin-bottom: 0.5rem; height: 1.25rem; }
+.value-row { display: flex; align-items: center; gap: 0.5rem; height: 2.25rem; }
+.value-row > .value { font-size: 1.75rem; }
+.type-badge { font-size: 0.7rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; color: #888; }
+
+.value { font-weight: 500; }
+.value.date, .value.partial-date { color: #60a5fa; }
+.value.duration { color: #34d399; }
+.value.integer { color: #fbbf24; }
+.value.unknown { color: #666; }
+
+.info-area { font-size: 0.75rem; color: #999; margin-left: auto; text-align: right; line-height: 1.4; }
+.info-area .week { color: #666; }
+
+.keypad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
+.keypad button, .keypad .empty { height: 2.75rem; border: none; border-radius: 8px; font-size: 1.125rem; font-family: inherit; cursor: pointer; background: #333; color: #eee; transition: background 0.1s; }
+.keypad .empty { background: transparent; cursor: default; }
+.keypad button:hover { background: #444; }
+.keypad button.op { background: #2563eb; }
+.keypad button.op:hover { background: #3b82f6; }
+.keypad button.unit { background: #065f46; }
+.keypad button.unit:hover { background: #047857; }
+.keypad button.clear { background: #7f1d1d; }
+.keypad button.equals { grid-row: span 2; height: 100%; }
+.keypad button.clear:hover { background: #991b1b; }
+
+.shortcuts { border-top: 1px solid #333; padding-top: 1rem; min-height: 10rem; }
+.shortcuts > div:not(.calendar-section) { display: grid; gap: 0.5rem; grid-template-columns: repeat(3, 1fr); margin-bottom: 0.5rem; }
+.shortcuts > div.month-grid { grid-template-columns: repeat(4, 1fr); }
+.shortcuts button { height: 2.8rem; border: none; border-radius: 6px; font-family: inherit; font-size: 0.85rem; cursor: pointer; transition: background 0.1s; background: #2563eb; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; }
+.shortcuts button:hover { background: #3b82f6; }
+.shortcuts button.current { background: #1e40af; }
+.shortcuts button.current:hover { background: #2563eb; }
+.shortcuts button.cal-day { height: 2.5rem; }
+.shortcuts .shortcut-hint { font-size: 0.6rem; opacity: 0.6; margin-top: 0.2em; }
+.shortcuts .month-num { font-size: 0.9rem; }
+
+.calendar-section .month-title { text-align: center; font-size: 0.85rem; color: #888; margin-bottom: 0.75rem; }
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal-header { text-align: center; font-size: 0.75rem; color: #666; padding: 0.25rem; }
+.cal-day { border: none; background: #1e3a5f; color: #93c5fd; padding: 0.5rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; border-radius: 4px; transition: background 0.1s; }
+.cal-day:hover { background: #2563eb; color: #fff; }
+.cal-day.dim { color: #444; background: transparent; cursor: default; }
+.cal-day.today { background: #92400e; color: #fcd34d; }
+
+.help { margin-top: 1rem; font-size: 0.75rem; color: #666; }

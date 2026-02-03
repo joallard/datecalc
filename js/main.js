@@ -43,13 +43,13 @@ function App() {
   const keypadRows = [
     ['7', '8', '9', '+', 'd'],
     ['4', '5', '6', '-', 'w'],
-    ['1', '2', '3', '=', 'm'],
-    ['0', '⌫', 'C', 'y']
+    ['1', '2', '3',      'm'],
+    ['0', '⌫', 'C', '=', 'y']
   ]
 
   const getButtonClass = (key) => {
-    if (key === '=') return 'op equals'
-    if (['+', '-'].includes(key)) return 'op'
+    if (key === '-') return 'op double'
+    if (['+', '='].includes(key)) return 'op'
     if (['d', 'w', 'm', 'y'].includes(key)) return 'unit'
     if (key === 'C') return 'clear'
     return ''

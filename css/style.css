@@ -28,7 +28,7 @@ body { font-family: ui-monospace, monospace; background: #1a1a1a; color: #eee; m
 .keypad button.unit { background: #065f46; }
 .keypad button.unit:hover { background: #047857; }
 .keypad button.clear { background: #7f1d1d; }
-.keypad button.equals { grid-row: span 2; height: 100%; }
+.keypad button.double { grid-row: span 2; height: 100%; }
 .keypad button.clear:hover { background: #991b1b; }
 
 .shortcuts { border-top: 1px solid #333; padding-top: 1rem; min-height: 10rem; }

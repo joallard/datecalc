@@ -54,8 +54,7 @@ test('same date minus itself → 0d', () => {
   expect(state.output.displayText).toBe('0d')
 })
 
-// Not yet supported: negative durations
-test.skip('earlier minus later → negative duration', () => {
+test('earlier minus later → negative duration', () => {
   const state = run('2024-01-01 - 2024-01-10 =')
   expect(state.output.displayText).toMatch(/^-/)
 })
@@ -64,17 +63,6 @@ test.skip('earlier minus later → negative duration', () => {
 test('multi-decade span', () => {
   const state = run('2024-01-01 - 1990-01-01 =')
   expect(state.output.displayText).toBe('34y')
-})
-
-// Not yet supported: negative duration input
-test.skip('date + negative duration', () => {
-  const state = run('2024-03-15 + -10d =')
-  expect(state.output.displayText).toBe('2024-03-05')
-})
-
-test.skip('date - negative duration (double negative)', () => {
-  const state = run('2024-03-15 - -10d =')
-  expect(state.output.displayText).toBe('2024-03-25')
 })
 
 // Year boundary

@@ -63,3 +63,13 @@ test('shortcut entry', () => {
   const state = handleKey(emptyState, 'set:2024-07-04')
   expect(state.display).toBe('2024-07-04')
 })
+
+test('operator substitution: +- becomes -', () => {
+  const state = run('2024-03-15 + - 10d =')
+  expect(state.output.displayText).toBe('2024-03-05')
+})
+
+test('operator substitution: -+ becomes +', () => {
+  const state = run('2024-03-15 - + 10d =')
+  expect(state.output.displayText).toBe('2024-03-25')
+})

@@ -94,9 +94,12 @@ function isNegative(obj) {
 
 export function calculate(left, operator, right) {
   if (left.type === 'date' && right.type === 'date' && operator === '-') {
-    const interval = Interval.fromDateTimes(right.value, left.value)
-    const duration = interval.toDuration(['years', 'days'])
-    return { type: 'duration', displayText: formatDuration(duration), value: duration, interval, displayUnit: 'y' }
+    const negative = left.value < right.value
+    const [start, end] = negative ? [left.value, right.value] : [right.value, left.value]
+    const interval = Interval.fromDateTimes(start, end)
+    const value = interval.toDuration(['years', 'days'])
+    return { type: 'duration', negative, value, interval, displayUnit: 'y',
+             displayText: formatDuration(value, negative) }
   }
 
   if (left.type === 'date' && right.type === 'duration') {
@@ -122,23 +125,25 @@ export function calculate(left, operator, right) {
   return null
 }
 
-export function formatDuration(duration) {
+export function formatDuration(duration, negative = false) {
   const parts = []
   if (duration.years) parts.push(`${duration.years}y`)
   if (duration.months) parts.push(`${duration.months}m`)
   if (duration.weeks) parts.push(`${duration.weeks}w`)
   if (duration.days) parts.push(`${duration.days}d`)
-  return parts.length ? parts.join('\u2009') : '0d'
+  const text = parts.length ? parts.join('\u2009') : '0d'
+  return negative ? '-' + text : text
 }
 
 export function formatInterval(interval, unitKey) {
   const units = { d: ['days'], w: ['weeks', 'days'], m: ['months', 'days'], y: ['years', 'months', 'days'] }
-  return formatDuration(interval.toDuration(units[unitKey]))
+  return interval.toDuration(units[unitKey])
 }
 
 export function reformatDuration(output, unit) {
   if (output?.type !== 'duration' || !output.interval) return null
-  return { ...output, displayText: formatInterval(output.interval, unit), displayUnit: unit }
+  const value = formatInterval(output.interval, unit)
+  return { ...output, value, displayText: formatDuration(value, output.negative), displayUnit: unit }
 }
 
 export function formatShortRelative(date) {

@@ -56,18 +56,26 @@ function App() {
   }
 
   const shortcuts = {
-    'month-entered': () => h('div', { className: 'calendar-section' },
-      h('div', { className: 'month-title' }, DateTime.fromISO(`${calendarYearMonth}-01`).toFormat('MMMM yyyy')),
-      h('div', { className: 'calendar' },
-        ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => h('div', { key: i, className: 'cal-header' }, d)),
-        calendarDays.map((cd, i) => h('button', {
-          key: i,
-          className: 'cal-day' + (cd.isCurrentMonth ? '' : ' dim') + (cd.isToday && cd.isCurrentMonth ? ' today' : ''),
-          onClick: cd.isCurrentMonth ? () => handleKey(`day:${cd.day}`) : undefined,
-          disabled: !cd.isCurrentMonth
-        }, String(cd.day).padStart(2, '0')))
+    'month-entered': () => {
+      const weeks = []
+      for (let i = 0; i < calendarDays.length; i += 7) weeks.push(calendarDays.slice(i, i + 7))
+      const filteredDays = weeks.filter(week => week.some(d => d.isCurrentMonth)).flat()
+
+      return h('div', { className: 'calendar-section' },
+        h('div', { className: 'calendar-grid' },
+          filteredDays.map((cd, i) => h('button', {
+            key: i,
+            className: 'calendar-day' + (cd.isCurrentMonth ? '' : ' dim') + (cd.isToday && cd.isCurrentMonth ? ' today' : ''),
+            onClick: cd.isCurrentMonth ? () => handleKey(`day:${cd.day}`) : undefined,
+            disabled: !cd.isCurrentMonth
+          }, String(cd.day).padStart(2, '0')))
+        ),
+        h('div', { className: 'calendar-weekdays' },
+          ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => h('span', { key: i }, d))
+        ),
+        h('div', { className: 'calendar-month' }, DateTime.fromISO(`${calendarYearMonth}-01`).toFormat('MMMM yyyy'))
       )
-    ),
+    },
 
     'year-entered': () => {
       const yr = parseInt(display.replace(/-$/, ''))

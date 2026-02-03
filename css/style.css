@@ -38,16 +38,16 @@ body { font-family: ui-monospace, monospace; background: #1a1a1a; color: #eee; m
 .shortcuts button:hover { background: #3b82f6; }
 .shortcuts button.current { background: #1e40af; }
 .shortcuts button.current:hover { background: #2563eb; }
-.shortcuts button.cal-day { height: 2.5rem; }
+.shortcuts button.calendar-day { height: 2.5rem; }
 .shortcuts .shortcut-hint { font-size: 0.6rem; opacity: 0.6; margin-top: 0.2em; }
 .shortcuts .month-num { font-size: 0.9rem; }
 
-.calendar-section .month-title { text-align: center; font-size: 0.85rem; color: #888; margin-bottom: 0.75rem; }
-.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-.cal-header { text-align: center; font-size: 0.75rem; color: #666; padding: 0.25rem; }
-.cal-day { border: none; background: #1e3a5f; color: #93c5fd; padding: 0.5rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; border-radius: 4px; transition: background 0.1s; }
-.cal-day:hover { background: #2563eb; color: #fff; }
-.cal-day.dim { color: #444; background: transparent; cursor: default; }
-.cal-day.today { background: #92400e; color: #fcd34d; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.75rem; color: #666; margin-top: 0.7rem; }
+.calendar-month { text-align: center; font-size: 0.85rem; color: #888; margin: 0.6rem; }
+.calendar-day { border: none; background: #1e3a5f; color: #93c5fd; padding: 0.5rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; border-radius: 4px; transition: background 0.1s; }
+.calendar-day:hover { background: #2563eb; color: #fff; }
+.calendar-day.dim { color: #444; background: transparent; cursor: default; }
+.calendar-day.today { background: #92400e; color: #fcd34d; }
 
 .help { margin-top: 1rem; font-size: 0.75rem; color: #666; }

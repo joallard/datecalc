@@ -1,9 +1,5 @@
 import { test, expect } from 'bun:test'
-import { emptyState, handleKey, getViewModel } from './js/input.js'
-
-function run(input) {
-  return [...input].filter(c => c !== ' ').reduce((state, key) => handleKey(state, key), emptyState)
-}
+import { emptyState, handleKey, getViewModel, run } from './helpers.js'
 
 test('date difference with reformat to days', () => {
   const state = run('2026-01-12 - 1991-01-13 = d')

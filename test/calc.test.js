@@ -30,6 +30,11 @@ test('chain operations', () => {
   expect(state.output.displayText).toBe('2025-01-29')
 })
 
+test('chain with second operator evaluates first', () => {
+  const state = run('100 + 50 + 25 =')
+  expect(state.output.displayText).toBe('175')
+})
+
 test('digit after result clears', () => {
   const state = run('100 + 50 = 7')
   expect(state.display).toBe('7')

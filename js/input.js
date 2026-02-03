@@ -85,7 +85,12 @@ export function handleIntent(state, intent) {
         return { display: '', expression: { left: output, operator: intent.value }, output: null }
       }
       const parsed = parseInput(display)
-      if (parsed.type !== 'unknown' && parsed.type !== 'partial-date' && display) {
+      const isUsableOperand = ['date', 'duration', 'integer'].includes(parsed.type)
+      if (isUsableOperand) {
+        if (expression?.operator) {
+          const res = calculate(expression.left, expression.operator, parsed)
+          if (res) return { display: '', expression: { left: res, operator: intent.value }, output: null }
+        }
         return { display: '', expression: { left: parsed, operator: intent.value }, output: null }
       }
       return state

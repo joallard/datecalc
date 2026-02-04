@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Date Calculator</title>
+  <meta name="description" content="Calculate days between dates, add or subtract weeks, months, years. A real calculator for dates—not a form.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Date Calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "description": "Calculate days between dates, add or subtract durations. Works like a real calculator.",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+
   <script type="importmap">
   {
     "imports": {
@@ -16,7 +30,19 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <noscript>
+    <p>Date Calculator requires JavaScript. Calculate days between dates, add weeks/months/years to any date.</p>
+  </noscript>
+  <h1 class="site-title">Date Calculator</h1>
   <div id="root"></div>
+  <footer class="seo-footer">
+    <details>
+      <summary>About</summary>
+      <p>Add days, weeks, months, or years to any date. Find the duration between two dates. Chain operations like a real calculator.</p>
+      <p>Enter a date, then use +/− to add or subtract durations. Subtract one date from another to get the days between. Press = to compute, or chain more operations.</p>
+      <p>Dates use yyyy-mm-dd format (ISO 8601).</p>
+    </details>
+  </footer>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
